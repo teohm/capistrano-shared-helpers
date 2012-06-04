@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "capistrano-shared-helpers"
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Huiming Teo"]
@@ -17,7 +17,18 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    "VERSION"
+    ".document",
+    "Gemfile",
+    "Gemfile.lock",
+    "LICENSE.txt",
+    "README.rdoc",
+    "Rakefile",
+    "VERSION",
+    "capistrano-shared-helpers.gemspec",
+    "lib/capistrano-shared-helpers.rb",
+    "lib/capistrano-shared-helpers/ext/remote_dependency.rb",
+    "lib/capistrano-shared-helpers/privates.rb",
+    "lib/capistrano-shared-helpers/shared.rb"
   ]
   s.homepage = "http://github.com/teohm/capistrano-shared-helpers"
   s.licenses = ["MIT"]
