@@ -23,12 +23,10 @@ Capistrano::Configuration.instance.load do
       This task is run after deploy:setup.
       DESC
       task :setup, :except => { :no_release => true } do
-        if exists?(:shared)
-          dirs = shared.map {|path| File.join(shared_path, File.dirname(path)) }
-          unless dirs.empty?
-            run "#{try_sudo} mkdir -p #{dirs.join(' ')}"
-            run "#{try_sudo} chmod g+w #{dirs.join(' ')}" if fetch(:group_writable, true)
-          end
+        dirs = fetch(:shared, []).map {|path| File.join(shared_path, File.dirname(path)) }
+        unless dirs.empty?
+          run "#{try_sudo} mkdir -p #{dirs.join(' ')}"
+          run "#{try_sudo} chmod g+w #{dirs.join(' ')}" if fetch(:group_writable, true)
         end
       end
 
@@ -36,11 +34,9 @@ Capistrano::Configuration.instance.load do
       Upload files/dirs in :shared from local to remote shared path.
       DESC
       task :upload, :except => { :no_release => true } do
-        if exists?(:shared)
-          shared.each do |path|
-            top.upload(path, File.join(shared_path, path),
-                       :via => :scp, :recursive => true)
-          end
+        fetch(:shared, []).each do |path|
+          top.upload(path, File.join(shared_path, path),
+                     :via => :scp, :recursive => true)
         end
       end
 

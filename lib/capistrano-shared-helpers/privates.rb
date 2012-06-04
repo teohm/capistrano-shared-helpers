@@ -23,11 +23,9 @@ Capistrano::Configuration.instance.load do
       This task is run after deploy:setup.
     DESC
     task :setup, :except => { :no_release => true } do
-      if exists?(:privates)
-        dirs = privates.map {|path| File.join(shared_path, 'private', File.dirname(path)) }
-        unless dirs.empty?
-          run "#{try_sudo} mkdir -p #{dirs.join(' ')}"
-        end
+      dirs = fetch(:privates, []).map {|path| File.join(shared_path, 'private', File.dirname(path)) }
+      unless dirs.empty?
+        run "#{try_sudo} mkdir -p #{dirs.join(' ')}"
       end
     end
 
@@ -35,11 +33,9 @@ Capistrano::Configuration.instance.load do
       Upload files/dirs in :shared from local to remote shared private path.
     DESC
     task :upload, :except => { :no_release => true } do
-      if exists?(:privates)
-        privates.each do |path|
-          top.upload(path, File.join(shared_path, 'private', path), 
-                     :via => :scp, :recursive => true)
-        end
+      fetch(:privates, []).each do |path|
+        top.upload(path, File.join(shared_path, 'private', path), 
+                   :via => :scp, :recursive => true)
       end
     end
 
