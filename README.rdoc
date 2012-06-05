@@ -1,6 +1,39 @@
 = capistrano-shared-helpers
+Provides a set of helper tasks related to the shared directory.
 
-Description goes here.
+== Install
+  gem install 'capistrano-shared-helpers'
+
+For bundler, add it into your Gemfile
+
+  gem 'capistrano-shared-helpers'
+
+== Usage
+You can include all helpers in config/deploy.rb:
+
+  require 'capistrnao-shared-helpers' # includes all helper tasks
+
+Or only include a specific helper:
+
+  require 'capistrano-ssh-helpers/privates'
+
+== Helpers
+
+=== shared
+
+* Add checks to deploy:check to ensure file paths defined in :shared var exist on remote server.
+* Create parent dirs for file paths defined in :shared, after deploy:setup.
+* Provide a rake task to upload files/dirs defined in :shared. To use it, call:
+
+  cap deploy:shared:upload
+
+=== privates 
+
+* Add checks to deploy:check to ensure file paths defined in :privates var exist on remote server.
+* Create parent dirs for file paths defined in :privates, after deploy:setup.
+* Provide a rake task to upload files/dirs defined in :privates to the private shared path. To use it, call:
+
+  cap deploy:privates:upload
 
 == Contributing to capistrano-shared-helpers
  
