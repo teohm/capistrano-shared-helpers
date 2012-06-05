@@ -25,7 +25,7 @@ Or only include a specific helper:
 * Create parent dirs for file paths defined in :shared, after deploy:setup.
 * Provide a rake task to upload files/dirs defined in :shared. To use it, call:
 
-  cap deploy:shared:upload
+    cap deploy:shared:upload
 
 === privates 
 
@@ -33,7 +33,7 @@ Or only include a specific helper:
 * Create parent dirs for file paths defined in :privates, after deploy:setup.
 * Provide a rake task to upload files/dirs defined in :privates to the private shared path. To use it, call:
 
-  cap deploy:privates:upload
+    cap deploy:privates:upload
 
 == Contributing to capistrano-shared-helpers
  
